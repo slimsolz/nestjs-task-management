@@ -11,6 +11,7 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +19,7 @@ export class AuthService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
